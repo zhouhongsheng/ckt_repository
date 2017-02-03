@@ -1,0 +1,87 @@
+.target-database-resources-div {
+	display: none;
+	width:500px;
+	height:420px;
+	position:absolute;
+	border:1px #bb5baf solid;
+	left:50%;
+	top:50%;
+	margin-left:-250px;
+	margin-top:-210px;
+	clear: both;
+	background-color: #ff8000;
+}
+.transition_div{
+	display: none;
+	width:500px;
+	height:420px;
+	position:absolute;
+	border:1px #bb5baf solid;
+	left:50%;
+	top:50%;
+	margin-left:-250px;
+	margin-top:-210px;
+	clear: both;
+	background-color: #ff8000;
+}
+.pre-database-resources-div{
+	display: none;
+	width:500px;
+	height:420px;
+	position:absolute;
+	border:1px #bb5baf solid;
+	left:50%;
+	top:50%;
+	margin-left:-250px;
+	margin-top:-210px;
+	clear: both;
+	background-color: #ff8000;
+}
+.p-content-name{
+	text-align: right;
+	padding-right: 5px;
+}
+.p-content-name-target{
+	text-align: right;
+	padding-right: 5px;
+}
+.input-content-value{
+	width: 280px;
+} 
+.input-content-value-target{
+	width: 280px;
+}
+.pre-data-div{
+	border: 1px black solid;
+	width:400px;
+	height:400px;
+} 
+.target-data-div{
+	border: 1px black solid;
+	width:400px;
+	height:400px;
+}
+.move-buttons-div{
+	float: left;
+	width:100px;
+	height:100px;
+	padding: 100px 5px 0 5px;
+}
+.execute-button-div{
+	float: left;
+	width:100px;
+	height:100px;
+	padding: 100px 5px 0 5px;
+}
+.pre-target-data-div{
+	border: 1px black solid;
+	width:400px;
+	height:400px;
+	margin-top: 40px;
+}
+.unselected{
+	background-color: #ffffff;
+}
+.selected{
+	background-color: #aaaaaa;
+}
