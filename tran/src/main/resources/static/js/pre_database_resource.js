@@ -15,8 +15,8 @@ $(".test-pre-database-resources").click(function() {
 	var userName = $("#userName").val();
 	var passWord = $("#passWord").val();
 	$.ajax({
-		url : '/api/pretran/test-pretran-datasource',
-		type : 'POST', // GET
+		url : '/api/transition/v1/preDataBase',
+		type : 'GET', // GET
 		async : true, // 或false,是否异步
 		data : {
 			"driverName" : driverName,
@@ -44,8 +44,8 @@ $(".confirm-pre-database-resources").click(function() {
 	var userName = $("#userName").val();
 	var passWord = $("#passWord").val();
 	$.ajax({
-		url : '/api/pretran/create-pretran-datasource',
-		type : 'PUT', // GET
+		url : '/api/transition/v1/preDataBase',
+		type : 'POST', // POST
 		async : true, // 或false,是否异步
 		data : {
 			"driverName" : driverName,

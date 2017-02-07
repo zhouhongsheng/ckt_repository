@@ -6,7 +6,7 @@ public class DataSource {
 
 	private String id;
 	private int type;
-	private String dataSource;
+	private String dataBase;
 	
 	public DataSource(){
 		
@@ -15,9 +15,9 @@ public class DataSource {
 		this.id=dataSourceDto.getId();
 		this.type=dataSourceDto.getType();
 		if(this.type==1){
-			this.dataSource=dataSourceDto.getDataBaseDto().getId();
+			this.dataBase=dataSourceDto.getDataBaseDto().getId();
 		}else{
-			this.dataSource=dataSourceDto.getPath();
+			this.dataBase=dataSourceDto.getPath();
 		}
 	}
 	public String getId() {
@@ -32,11 +32,10 @@ public class DataSource {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public String getDataSource() {
-		return dataSource;
+	public String getDataBase() {
+		return dataBase;
 	}
-	public void setDataSource(String dataSource) {
-		this.dataSource = dataSource;
+	public void setDataBase(String dataBase) {
+		this.dataBase = dataBase;
 	}
-	
 }

@@ -6,10 +6,10 @@ import tran.tran.model.dto.TransitionDataDto;
 
 public interface ITransition {
 
-	public String createTran(TransitionDataDto transitionDataDto);
+	public String createTransition(TransitionDataDto transitionDataDto);
 	
-	public String tran(TransitionDataDto transitionDataDto);
+	public String updateTransition(TransitionDataDto transitionDataDto);
 	
-	public List<Transition> queryTransitions(String username);
+	public List<Transition> queryTransitions(String userName);
 	
 }

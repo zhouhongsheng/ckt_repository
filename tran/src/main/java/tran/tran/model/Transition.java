@@ -10,6 +10,7 @@ public class Transition {
 	private String preDataSourceId;
 	private String targetDataSourceId;
 	private int operateType;
+	private int countType;//这个字段无实际意义，insert or update的时候使用
 	
 	public String getId() {
 		return id;
@@ -46,6 +47,12 @@ public class Transition {
 	}
 	public void setOperateType(int operateType) {
 		this.operateType = operateType;
+	}
+	public int getCountType() {
+		return countType;
+	}
+	public void setCountType(int countType) {
+		this.countType = countType;
 	}
 	
 }

@@ -13,8 +13,8 @@ $(".test-target-database-resources").click(function(){
 	var userName = $("#userNameTarget").val();
 	var passWord = $("#passWordTarget").val();
 	$.ajax({
-		url : '/api/targettran/test-targettran-datasource',
-		type : 'POST', // GET
+		url : '/api/transition/v1/targetDataBase',
+		type : 'GET', // GET
 		async : true, // 或false,是否异步
 		data : {
 			"driverName" : driverName,
@@ -42,8 +42,8 @@ $(".confirm-target-database-resources").click(function() {
 	var userName = $("#userNameTarget").val();
 	var passWord = $("#passWordTarget").val();
 	$.ajax({
-		url : '/api/targettran/create-targettran-datasource',
-		type : 'PUT', // GET
+		url : '/api/transition/v1/targetDataBase',
+		type : 'POST', // GET
 		async : true, // 或false,是否异步
 		data : {
 			"driverName" : driverName,

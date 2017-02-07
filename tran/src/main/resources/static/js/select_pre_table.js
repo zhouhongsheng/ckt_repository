@@ -1,7 +1,7 @@
 $(".select-pre-table-btn").click(
 		function() {
 			$.ajax({
-				url : '/api/pretran/query-pre-table-list',
+				url : '/api/transition/v1/preTableNames',
 				type : 'GET', // GET
 				async : true, // 或false,是否异步
 				data : {
@@ -26,7 +26,7 @@ $(".select-pre-table-btn").click(
 		});
 $(".select-pre-table-select").change(function() {
 	$.ajax({
-		url : '/api/pretran/query-pre-columnnames',
+		url : '/api/transition/v1/preColumnNames',
 		type : 'POST', // GET
 		async : true, // 或false,是否异步
 		data : JSON.stringify({

@@ -30,4 +30,13 @@ public class DataSourceImpl implements IDataSource {
 			throw e;
 		}
 	}
+
+	@Override
+	public void updateDataSource(DataSource dataSource) throws Exception {
+		try {
+			iDataSourceDao.update(dataSource);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 }

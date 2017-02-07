@@ -1,7 +1,7 @@
 $(".select-target-table-btn").click(
 	function() {
 		$.ajax({
-			url : '/api/targettran/query-target-table-list',
+			url : '/api/transition/v1/targetTableNames',
 			type : 'GET', // GET
 			async : true, // 或false,是否异步
 			data : {
@@ -26,7 +26,7 @@ $(".select-target-table-btn").click(
 	});
 $(".select-target-table-select").change(function() {
 	$.ajax({
-		url : '/api/targettran/query-target-columnnames',
+		url : '/api/transition/v1/targetColumnNames',
 		type : 'POST', // GET
 		async : true, // 或false,是否异步
 		data :  JSON.stringify({

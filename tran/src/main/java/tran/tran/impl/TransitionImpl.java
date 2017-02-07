@@ -3,12 +3,16 @@ package tran.tran.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import tran.tran.dao.IPreTargetMappingDao;
 import tran.tran.dao.ITransitionDao;
 import tran.tran.intf.IDataBase;
 import tran.tran.intf.IDataSource;
 import tran.tran.intf.ITransition;
 import tran.tran.model.DataBase;
 import tran.tran.model.DataSource;
+import tran.tran.model.PreTargetMapping;
 import tran.tran.model.Transition;
 import tran.tran.model.dto.DataBaseDto;
 import tran.tran.model.dto.DataSourceDto;
@@ -23,9 +27,10 @@ public class TransitionImpl implements ITransition {
 	private IDataBase iDataBase;
 	@Autowired
 	private IDataSource iDataSource;
-
-	@Override
-	public String tran(TransitionDataDto transitionDataDto) {
+	@Autowired
+	private IPreTargetMappingDao iPreTargetMappingDao;
+	
+	private String tran(TransitionDataDto transitionDataDto) {
 		// 判断转换是否存在，存在更新，不存在返回
 		String result = "";
 		switch (transitionDataDto.getOperateType()) {
@@ -117,9 +122,9 @@ public class TransitionImpl implements ITransition {
 	 * @see tran.tran.intf.TranIntf#queryTransitions() 2017年1月19日
 	 */
 	@Override
-	public List<Transition> queryTransitions(String username) {
+	public List<Transition> queryTransitions(String userName) {
 
-		return iTransitionDao.queryTransitionsByUsername(username);
+		return iTransitionDao.queryTransitionsByUsername(userName);
 	}
 
 	/*
@@ -134,7 +139,8 @@ public class TransitionImpl implements ITransition {
 	 * 2017年1月22日
 	 */
 	@Override
-	public String createTran(TransitionDataDto transitionDataDto) {
+	@Transactional
+	public String createTransition(TransitionDataDto transitionDataDto) {
 		String result = "";
 		try {
 			DataSourceDto preDataSourceDto = transitionDataDto.getPreDataSourceDto();
@@ -161,10 +167,72 @@ public class TransitionImpl implements ITransition {
 			transition.setTargetDataSourceId(transitionDataDto.getTargetDataSourceDto().getId());
 			iTransitionDao.insertOrUpdate(transition);
 			//保存mapping
-			
+			List<String> tranArrayList=transitionDataDto.getTranArray();
+			for (String string : tranArrayList) {
+				PreTargetMapping preTargetMappingDto=new PreTargetMapping();
+				preTargetMappingDto.setType(1);
+				preTargetMappingDto.setTransitionId(transition.getId());
+				preTargetMappingDto.setPreColumnName(string.split("=")[0]);
+				preTargetMappingDto.setTargetColumnName(string.split("=")[1]);
+				iPreTargetMappingDao.insert(preTargetMappingDto);
+			}
+			result=transition.getId();
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = e.toString();
+		}
+		return result;
+	}
+
+	/*
+	 * update transition
+	 * @param transitionDataDto
+	 * @return 
+	 * @see tran.tran.intf.ITransition#updateTran(tran.tran.model.dto.TransitionDataDto)
+	 * 2017年2月4日
+	 */
+	@Override
+	@Transactional
+	public String updateTransition(TransitionDataDto transitionDataDto) {
+		String result = "";
+		try{
+		DataSourceDto preDataSourceDto = transitionDataDto.getPreDataSourceDto();
+		DataBaseDto preDataBaseDto = preDataSourceDto.getDataBaseDto();
+		// 保存源数据源
+		DataBase preDataBase=new DataBase(preDataBaseDto);
+		iDataBase.updateDataBase(preDataBase);
+		DataSource preDataSource=new DataSource(preDataSourceDto);
+		iDataSource.updateDataSource(preDataSource);
+
+		DataSourceDto targetDataSourceDto=transitionDataDto.getTargetDataSourceDto();
+		DataBaseDto targetDataBaseDto=targetDataSourceDto.getDataBaseDto();
+		// 保存目标数据源
+		DataBase targetDataBase=new DataBase(targetDataBaseDto);
+		iDataBase.updateDataBase(targetDataBase);
+		DataSource targetDataSource=new DataSource(targetDataSourceDto);
+		iDataSource.updateDataSource(targetDataSource);
+		//保存transition
+		Transition transition=new Transition();
+		transition.setTranName(transitionDataDto.getTranName());
+		transition.setUserId(transitionDataDto.getUserId());
+		transition.setOperateType(transitionDataDto.getOperateType());
+		transition.setPreDataSourceId(transitionDataDto.getPreDataSourceDto().getId());
+		transition.setTargetDataSourceId(transitionDataDto.getTargetDataSourceDto().getId());
+		iTransitionDao.insertOrUpdate(transition);
+		//保存mapping
+		List<String> tranArrayList=transitionDataDto.getTranArray();
+		for (String string : tranArrayList) {
+			PreTargetMapping preTargetMappingDto=new PreTargetMapping();
+			preTargetMappingDto.setType(1);
+			preTargetMappingDto.setTransitionId(transition.getId());
+			preTargetMappingDto.setPreColumnName(string.split("=")[0]);
+			preTargetMappingDto.setTargetColumnName(string.split("=")[1]);
+			iPreTargetMappingDao.update(preTargetMappingDto);
+		}
+		result=transition.getId();
+		}catch(Exception e){
+			e.printStackTrace();
+			result=e.toString();
 		}
 		return result;
 	}

@@ -10,19 +10,19 @@ import tran.tran.intf.ITransition;
 import tran.tran.model.dto.TransitionDataDto;
 
 @Controller
-@RequestMapping(value="/api/tran")
+@RequestMapping(value="/api/transition/v1")
 public class TransitionController {
 	@Autowired
 	private ITransition tranIntf;
 	
-	@RequestMapping(value="/tran", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="/transation", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String tran(@RequestBody TransitionDataDto transitionDataDto){
-		return tranIntf.tran(transitionDataDto);
+	public String updateTransition(@RequestBody TransitionDataDto transitionDataDto){
+		return tranIntf.updateTransition(transitionDataDto);
 	}
-	@RequestMapping(value="/create-tran",method=RequestMethod.PUT)
+	@RequestMapping(value="/transition",method=RequestMethod.PUT)
 	@ResponseBody
-	public String createTran(@RequestBody TransitionDataDto transitionDataDto){
-		return tranIntf.createTran(transitionDataDto);
+	public String createTransition(@RequestBody TransitionDataDto transitionDataDto){
+		return tranIntf.createTransition(transitionDataDto);
 	}
 }

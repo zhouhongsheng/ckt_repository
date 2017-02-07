@@ -18,13 +18,13 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="transitionColumns"></include>
-		from t_transition t
+		from t_transition t where t.user_id=#{userName}
 	</select>
 	<insert id="insertOrUpdate" parameterType="tran.tran.model.Transition">
-		<selectKey keyProperty="operateType" resultType="int" order="BEFORE">
-			select count(id) as operateType from t_transition where id = #{id}
+		<selectKey keyProperty="countType" resultType="int" order="BEFORE">
+			select count(id) as countType from t_transition where id = #{id}
 		</selectKey>
-	    <if test="operateType >0" >
+	    <if test="countType >0" >
 			update t_transition
 			set tran_name = #{tranName},
 			userId = #{user_id},
@@ -33,8 +33,9 @@
 			operate_type = #{operateType}
 			where id = #{id}
 	    </if>
-	    <if test="operateType==0">
-			insert into t_transition values(#{id},#{tranName},#{userId},#{preDataSourceId},#{targetDataSourceId},#{operateType})
+	    <if test="countType==0">
+			insert into t_transition(<include refid="transitionColumns"></include>) 
+			values (#{id},#{tranName},#{userId},#{preDataSourceId},#{targetDataSourceId},#{operateType});
 	    </if>
 	</insert>
 </mapper>

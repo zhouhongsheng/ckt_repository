@@ -53,18 +53,17 @@ public class DataBaseImpl implements IDataBase {
 	 * 2017年1月22日
 	 */
 	@Override
-	public DataSource createDataBase(DataBase customDataBase) {
+	public DataBase createDataBase(DataBase customDataBase) {
 		DataSource dataSource = UtilTool.dataBase(customDataBase);
 		try {
 			Connection con = dataSource.getConnection();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			dataSource = null;
 		} finally {
 			dataSource.close();
 		}
-		return dataSource;
+		return customDataBase;
 	}
 
 	/*
@@ -105,7 +104,7 @@ public class DataBaseImpl implements IDataBase {
 	 * 2017年1月22日
 	 */
 	@Override
-	public List<String> queryTableNameList(DataBase customDataBase) {
+	public List<String> queryTableNames(DataBase customDataBase) {
 		List<String> result = new ArrayList<>();
 		String sql = "";
 		String tableName = "";
@@ -190,5 +189,14 @@ public class DataBaseImpl implements IDataBase {
 			dataSource.close();
 		}
 		return result;
+	}
+
+	@Override
+	public void updateDataBase(DataBase dataBase) throws Exception {
+		try {
+			iDataBaseDao.update(dataBase);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }

@@ -1,14 +1,14 @@
 //query transitions
 $('.query_transitions_btn').click(function(){
 	$.ajax({
-		url : '/api/tran/query-transitions',
+		url : '/api/transition/v1/transitions',
 		type : 'GET', // POST
-		async : true, // 或false,是否异步
+		async : false, // 或false,是否异步
 		data : "zhouyou",
 		headers:{'Content-Type':'application/json'},
 		dataType : 'json',
 		success : function(data) {
-			$(".tran_select").html("");
+			$(".tran_select").html("<option value='0'>-choose-</option>");
 			$.each(data,function(i,n){
 				$(".tran_select").append("<option value='"+n.id+"'>"+n.tranName+"</option>");
 			});
@@ -39,8 +39,8 @@ $(".tran-confirm-btn").click(function(){
 		return false;
 	}
 	$.ajax({
-		url : '/api/tran/create-tran',
-		type : 'PUT', // POST
+		url : '/api/transition/v1/transition',
+		type : 'PUT', // PUT
 		async : true, // 或false,是否异步
 		data : JSON.stringify({
 			"tranName":$(".tran-name-input").val(),
@@ -72,7 +72,9 @@ $(".tran-confirm-btn").click(function(){
 		}),
 		headers:{'Content-Type':'application/json'},
 		success:function(data){
-			console.log(data);
+			$(".transition_div").hide();
+			$('.query_transitions_btn').click();
+			$(".tran_select").val(data);
 		},
 		error:function(data){
 			alert(data.responseText);
@@ -92,12 +94,13 @@ $(".execute-tran-btn").click(function() {
 	}
 	//是否选择转换
 	var transitionId=$(".tran_select").val();
-	if(!(transitionId!=null&&transitionId!=""&&transitionId!=undefined)){
+	if(!(transitionId!=null&&transitionId!=""&&transitionId!=undefined&&transitionId!=0)){
+		alert("please create a transition .");
 		$(".transition_div").show();
 		return false;
 	}
 	$.ajax({
-		url : '/api/tran/tran',
+		url : '/api/transition/v1/transition',	
 		type : 'POST', // POST
 		async : true, // 或false,是否异步
 		data : JSON.stringify({
