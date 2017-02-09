@@ -10,6 +10,6 @@ public interface ITransition {
 	
 	public String updateTransition(TransitionDataDto transitionDataDto);
 	
-	public List<Transition> queryTransitions(String userName);
+	public List<Transition> queryTransitions(String userId);
 	
 }

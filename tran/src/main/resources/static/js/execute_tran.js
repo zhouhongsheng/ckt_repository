@@ -4,8 +4,7 @@ $('.query_transitions_btn').click(function(){
 		url : '/api/transition/v1/transitions',
 		type : 'GET', // POST
 		async : false, // 或false,是否异步
-		data : "zhouyou",
-		headers:{'Content-Type':'application/json'},
+		data : {},
 		dataType : 'json',
 		success : function(data) {
 			$(".tran_select").html("<option value='0'>-choose-</option>");
@@ -38,9 +37,10 @@ $(".tran-confirm-btn").click(function(){
 		alert("please choose origin-target database.");
 		return false;
 	}
+	$(".dealing-div").show();
 	$.ajax({
 		url : '/api/transition/v1/transition',
-		type : 'PUT', // PUT
+		type : 'POST', // POST新建
 		async : true, // 或false,是否异步
 		data : JSON.stringify({
 			"tranName":$(".tran-name-input").val(),
@@ -75,6 +75,7 @@ $(".tran-confirm-btn").click(function(){
 			$(".transition_div").hide();
 			$('.query_transitions_btn').click();
 			$(".tran_select").val(data);
+			$(".dealing-div").hide();
 		},
 		error:function(data){
 			alert(data.responseText);
@@ -101,7 +102,7 @@ $(".execute-tran-btn").click(function() {
 	}
 	$.ajax({
 		url : '/api/transition/v1/transition',	
-		type : 'POST', // POST
+		type : 'PUT', // PUT更新
 		async : true, // 或false,是否异步
 		data : JSON.stringify({
 			"preDataSource" : {

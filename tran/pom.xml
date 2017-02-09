@@ -22,12 +22,18 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
+		<!-- postgresql -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4.1208-jdbc42-atlassian-hosted</version>
 		</dependency>
-
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.2</version>
+		</dependency>
 		<!--Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -61,40 +67,40 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        
-        <dependency>  
-            <groupId>com.fasterxml.jackson.core</groupId>  
-            <artifactId>jackson-databind</artifactId>  
-            <version>2.5.3</version><!--$NO-MVN-MAN-VER$-->  
-        </dependency>
-        
-         <!-- Swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.6.1</version>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-        
-        <!-- thymeleaf -->
-	    <dependency>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-	            <exclusions>
-	                <exclusion>
-	                    <artifactId>slf4j-api</artifactId>
-	                    <groupId>org.slf4j</groupId>
-	                </exclusion>
-	            </exclusions>
-	     </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.3</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+
+		<!-- thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

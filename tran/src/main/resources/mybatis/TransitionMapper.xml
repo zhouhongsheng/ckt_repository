@@ -14,11 +14,18 @@
 	<sql id="transitionColumns">
 		id,tran_name,user_id,pre_data_source_id,target_data_source_id,operate_type
 	</sql>
-	<select id="queryTransitionsByUsername" resultMap="transitionResultMap"
-		parameterType="java.lang.String">
+	<select id="queryTransitionsByUsername" resultMap="transitionResultMap">
 		select
 		<include refid="transitionColumns"></include>
-		from t_transition t where t.user_id=#{userName}
+		from t_transition t where 
+		<choose>
+		    <when test="_parameter != null" >
+		        t.user_id=#{_parameter,jdbcType=VARCHAR}
+		    </when>
+		    <otherwise>
+		    	1=1
+		    </otherwise>
+	    </choose>
 	</select>
 	<insert id="insertOrUpdate" parameterType="tran.tran.model.Transition">
 		<selectKey keyProperty="countType" resultType="int" order="BEFORE">

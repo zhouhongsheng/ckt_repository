@@ -15,7 +15,7 @@ $(".test-pre-database-resources").click(function() {
 	var userName = $("#userName").val();
 	var passWord = $("#passWord").val();
 	$.ajax({
-		url : '/api/transition/v1/preDataBase',
+		url : '/api/transition/v1/dataBase',
 		type : 'GET', // GET
 		async : true, // 或false,是否异步
 		data : {
@@ -44,7 +44,7 @@ $(".confirm-pre-database-resources").click(function() {
 	var userName = $("#userName").val();
 	var passWord = $("#passWord").val();
 	$.ajax({
-		url : '/api/transition/v1/preDataBase',
+		url : '/api/transition/v1/dataBase',
 		type : 'POST', // POST
 		async : true, // 或false,是否异步
 		data : {
@@ -71,4 +71,13 @@ $(".confirm-pre-database-resources").click(function() {
 			alert(data.responseText);
 		}
 	});
+});
+$("#dataBaseType").change(function(){
+	if($(this).val()==1){
+		$("#driverName").val("org.postgresql.Driver");
+		$("#url").val("jdbc:postgresql://127.0.0.1/pre_tran");
+	}else if($(this).val()==2){
+		$("#driverName").val("com.mysql.jdbc.Driver");	
+		$("#url").val("jdbc:mysql://localhost:3306/");
+	}
 });

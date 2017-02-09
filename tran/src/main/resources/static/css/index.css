@@ -1,3 +1,13 @@
+.dealing-div{
+	display: none;
+	z-index: 999;
+	position:absolute;
+	background: #cccccc;
+	top:50%;
+	left:50%;
+	margin-left:-100px;
+	margin-top:-150px
+}
 .target-database-resources-div {
 	display: none;
 	width:500px;
@@ -9,7 +19,7 @@
 	margin-left:-250px;
 	margin-top:-210px;
 	clear: both;
-	background-color: #ff8000;
+	background-color: #80ff00;
 }
 .transition_div{
 	display: none;
@@ -22,7 +32,7 @@
 	margin-left:-250px;
 	margin-top:-210px;
 	clear: both;
-	background-color: #ff8000;
+	background-color: #80ff00;
 }
 .pre-database-resources-div{
 	display: none;
@@ -35,7 +45,7 @@
 	margin-left:-250px;
 	margin-top:-210px;
 	clear: both;
-	background-color: #ff8000;
+	background-color: #80ff00;
 }
 .p-content-name{
 	text-align: right;

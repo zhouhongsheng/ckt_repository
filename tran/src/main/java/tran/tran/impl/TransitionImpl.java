@@ -30,7 +30,7 @@ public class TransitionImpl implements ITransition {
 	@Autowired
 	private IPreTargetMappingDao iPreTargetMappingDao;
 	
-	private String tran(TransitionDataDto transitionDataDto) {
+	private String transition(TransitionDataDto transitionDataDto) {
 		// 判断转换是否存在，存在更新，不存在返回
 		String result = "";
 		switch (transitionDataDto.getOperateType()) {
@@ -122,9 +122,9 @@ public class TransitionImpl implements ITransition {
 	 * @see tran.tran.intf.TranIntf#queryTransitions() 2017年1月19日
 	 */
 	@Override
-	public List<Transition> queryTransitions(String userName) {
+	public List<Transition> queryTransitions(String userId) {
 
-		return iTransitionDao.queryTransitionsByUsername(userName);
+		return iTransitionDao.queryTransitionsByUsername(userId);
 	}
 
 	/*
@@ -230,6 +230,10 @@ public class TransitionImpl implements ITransition {
 			iPreTargetMappingDao.update(preTargetMappingDto);
 		}
 		result=transition.getId();
+		
+		//transition
+		transition(transitionDataDto);
+		
 		}catch(Exception e){
 			e.printStackTrace();
 			result=e.toString();

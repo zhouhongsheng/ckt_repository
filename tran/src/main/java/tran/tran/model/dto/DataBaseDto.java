@@ -12,6 +12,7 @@ public class DataBaseDto {
 	private String userName;
 	private String passWord;
 	private int dataBaseType;
+	private String tableName;
 	
 	public String getId() {
 		return id;
@@ -61,5 +62,10 @@ public class DataBaseDto {
 	public void setDataBaseType(int dataBaseType) {
 		this.dataBaseType = dataBaseType;
 	}
-	
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 }

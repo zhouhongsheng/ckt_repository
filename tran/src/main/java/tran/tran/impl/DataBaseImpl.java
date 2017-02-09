@@ -14,7 +14,7 @@ import tran.tran.common.UtilTool;
 import tran.tran.dao.IDataBaseDao;
 import tran.tran.intf.IDataBase;
 import tran.tran.model.DataBase;
-import tran.tran.model.dto.DataBaseTableNameDto;
+import tran.tran.model.dto.DataBaseDto;
 
 @Service
 public class DataBaseImpl implements IDataBase {
@@ -30,7 +30,6 @@ public class DataBaseImpl implements IDataBase {
 	 * @throws Exception
 	 * 
 	 * @see
-	 * tran.tran.intf.IDataBase#insertDataBase(tran.tran.model.dto.DataBaseDto)
 	 * 2017年1月23日
 	 */
 	@Override
@@ -151,17 +150,16 @@ public class DataBaseImpl implements IDataBase {
 	 * 2017年1月22日
 	 */
 	@Override
-	public List<String> queryColumnNames(DataBaseTableNameDto dataBaseTableNameDto) {
+	public List<String> queryColumnNames(DataBaseDto dataBaseDto) {
 		List<String> result = new ArrayList<>();
 		String sql = "";
 		String columnName = "";
 
-		DataBase dataBase = dataBaseTableNameDto.getDataBase();
-		DataSource dataSource = UtilTool.dataBase(dataBase);
-		switch (dataBase.getDataBaseType()) {
+		DataSource dataSource = UtilTool.dataBase(new DataBase(dataBaseDto));
+		switch (dataBaseDto.getDataBaseType()) {
 		case 1:
 			sql = "select column_name from information_schema.columns where table_schema = 'public' and table_name='"
-					+ dataBaseTableNameDto.getTableName() + "'";
+					+ dataBaseDto.getTableName() + "'";
 			break;
 		case 2:
 			sql = "mysql ";
@@ -169,7 +167,7 @@ public class DataBaseImpl implements IDataBase {
 			sql = "oracle";
 		default:
 			sql = "select column_name from information_schema.columns where table_schema = 'public' and table_name='"
-					+ dataBaseTableNameDto.getTableName() + "'";
+					+ dataBaseDto.getTableName() + "'";
 			break;
 		}
 		try {

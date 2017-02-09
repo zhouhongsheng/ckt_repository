@@ -13,7 +13,7 @@ $(".test-target-database-resources").click(function(){
 	var userName = $("#userNameTarget").val();
 	var passWord = $("#passWordTarget").val();
 	$.ajax({
-		url : '/api/transition/v1/targetDataBase',
+		url : '/api/transition/v1/dataBase',
 		type : 'GET', // GET
 		async : true, // 或false,是否异步
 		data : {
@@ -42,7 +42,7 @@ $(".confirm-target-database-resources").click(function() {
 	var userName = $("#userNameTarget").val();
 	var passWord = $("#passWordTarget").val();
 	$.ajax({
-		url : '/api/transition/v1/targetDataBase',
+		url : '/api/transition/v1/dataBase',
 		type : 'POST', // GET
 		async : true, // 或false,是否异步
 		data : {

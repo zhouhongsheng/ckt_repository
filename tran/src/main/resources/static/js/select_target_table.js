@@ -1,7 +1,7 @@
 $(".select-target-table-btn").click(
 	function() {
 		$.ajax({
-			url : '/api/transition/v1/targetTableNames',
+			url : '/api/transition/v1/dataBase/tableNames',
 			type : 'GET', // GET
 			async : true, // 或false,是否异步
 			data : {
@@ -26,20 +26,17 @@ $(".select-target-table-btn").click(
 	});
 $(".select-target-table-select").change(function() {
 	$.ajax({
-		url : '/api/transition/v1/targetColumnNames',
-		type : 'POST', // GET
+		url : '/api/transition/v1/dataBase/columnNames',
+		type : 'GET', // GET
 		async : true, // 或false,是否异步
-		data :  JSON.stringify({
+		data : {
 			"tableName" : $(this).val(),
-			"dataBase":{
-				"driverName" : $("#driverNameTarget").val(),
-				"url" : $("#urlTarget").val(),
-				"userName" : $("#userNameTarget").val(),
-				"passWord" : $("#passWordTarget").val(),
-				"dataBaseType" : $("#dataBaseTypeTarget").val()
-			}
-		}),
-		headers:{'Content-Type':'application/json'},
+			"driverName" : $("#driverNameTarget").val(),
+			"url" : $("#urlTarget").val(),
+			"userName" : $("#userNameTarget").val(),
+			"passWord" : $("#passWordTarget").val(),
+			"dataBaseType" : $("#dataBaseTypeTarget").val()
+		},
 		success : function(data) {
 			$(".target-data-table").html("");
 			$.each(data, function(i, n) {

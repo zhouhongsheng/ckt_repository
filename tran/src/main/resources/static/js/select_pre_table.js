@@ -1,7 +1,7 @@
 $(".select-pre-table-btn").click(
 		function() {
 			$.ajax({
-				url : '/api/transition/v1/preTableNames',
+				url : '/api/transition/v1/dataBase/tableNames',
 				type : 'GET', // GET
 				async : true, // 或false,是否异步
 				data : {
@@ -26,20 +26,17 @@ $(".select-pre-table-btn").click(
 		});
 $(".select-pre-table-select").change(function() {
 	$.ajax({
-		url : '/api/transition/v1/preColumnNames',
-		type : 'POST', // GET
+		url : '/api/transition/v1/dataBase/columnNames',
+		type : 'GET', // GET
 		async : true, // 或false,是否异步
-		data : JSON.stringify({
+		data : {
 			"tableName" : $(this).val(),
-			"dataBase":{
-				"driverName" : $("#driverName").val(),
-				"url" : $("#url").val(),
-				"userName" : $("#userName").val(),
-				"passWord" : $("#passWord").val(),
-				"dataBaseType" : $("#dataBaseType").val()
-			}
-		}),
-		headers:{'Content-Type':'application/json'},
+			"driverName" : $("#driverName").val(),
+			"url" : $("#url").val(),
+			"userName" : $("#userName").val(),
+			"passWord" : $("#passWord").val(),
+			"dataBaseType" : $("#dataBaseType").val()
+		},
 		success : function(data) {
 			$(".pre-data-table").html("");
 			$.each(data, function(i, n) {

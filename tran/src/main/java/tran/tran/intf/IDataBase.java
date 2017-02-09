@@ -2,7 +2,7 @@ package tran.tran.intf;
 
 import java.util.List;
 import tran.tran.model.DataBase;
-import tran.tran.model.dto.DataBaseTableNameDto;
+import tran.tran.model.dto.DataBaseDto;
 
 public interface IDataBase {
 
@@ -12,7 +12,7 @@ public interface IDataBase {
 	
 	public List<String> queryTableNames(DataBase customDataBase);
 
-	public List<String> queryColumnNames(DataBaseTableNameDto dataBaseTableNameDto);
+	public List<String> queryColumnNames(DataBaseDto dataBaseDto);
 	
 	public void insertDataBase(DataBase dataBase) throws Exception;
 	
