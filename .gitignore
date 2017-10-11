@@ -1,0 +1,17 @@
+/.settings
+/.project
+/.classpath
+/.factorypath
+/.git
+/.metadata
+/config
+/target
+/RemoteSystemsTempFiles
+
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+*.springBeans
+/.apt_generated/
