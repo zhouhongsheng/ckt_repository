@@ -32,8 +32,7 @@ public class TestController {
 					@HystrixProperty(name = "maxQueueSize", value = "-1"),
 					@HystrixProperty(name = "queueSizeRejectionThreshold", value = "10") })
 	public String index() {
-		String str=iTestProducerFeign.index();
-		return str;
+		return iTestProducerFeign.index();
 	}
 
 	public String indexFallback() {
