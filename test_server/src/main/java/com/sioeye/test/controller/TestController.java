@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @desc 测试controller
  */
 @RestController
+@RequestMapping("/test")
 public class TestController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)

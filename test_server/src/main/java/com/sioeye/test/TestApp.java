@@ -15,6 +15,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class TestApp {
 	public static void main(String[] args) {
 		SpringApplication.run(TestApp.class, args);
-		System.out.println("certificate server start success .");
+		System.out.println("test server start success .");
 	}
 }
