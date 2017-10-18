@@ -2,13 +2,8 @@
 /.project
 /.classpath
 /.factorypath
-/.git
-/.metadata
-/.recommenders
 /config
 /target
-/Servers
-/RemoteSystemsTempFiles
 
 *.class
 # Package Files #
