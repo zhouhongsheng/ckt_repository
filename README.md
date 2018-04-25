@@ -1,6 +1,10 @@
-spring cloud 
-======
-1:config server 将config_files目录下的配置文件拷贝到对应spring.cloud.config.server.native.searchLocations指定的目录下，也可以用远程git仓库的方式，将注释打开<br/>
-2:调用test-server服务index接口http://localhost:8020/test/index<br/>
-3:turbine方法url为http://localhost:9000/hystrix,在监控url中输入localhost:8030/turbine.stream?cluster=TEST<br/>
-4:sleuth的访问地址为http://localhost:8040<br/>
+spring cloud 微服务框架
+主要功能：eureka server为服务注册中心
+         config server为配置文件管理中心，所有服务的配置文件都从该服务获取
+         zuul server为网关路由层，所有访问都是通过它，然后由zuul进行服务路由到各自微服务中，采用默认的路由规则为轮询
+         turbine server为hystrix监控聚合服务，通过它，可以进行各服务监控
+         zipkin server为服务链路追踪服务，主要用来查看访问通过各服务的路径和健康状况
+         test sidecar server为spring cloud整合非java项目，本文整合的是nodeJs
+         user server为node项目，通过test sidecar server 调用
+         test server为访问接口
+         test producer server为服务提供者
