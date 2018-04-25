@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sioeye.log.SioeyeLog;
+import com.alibaba.fastjson.JSONObject;
 import com.sioeye.sidecar.config.CustomException;
 import com.sioeye.sidecar.config.EnumHandle;
 import com.sioeye.sidecar.model.User;
@@ -23,23 +23,22 @@ import com.sioeye.sidecar.service.intf.IUser;
 @RefreshScope
 public class UserController {
 
-    @Autowired
-    private IUser iUser;
-    private static final Log log = LogFactory.getLog(UserController.class);
+	@Autowired
+	private IUser iUser;
 
-    @RequestMapping(value = "/query_user", method = RequestMethod.POST)
-    public String queryFace(@RequestBody Map<String, Object> map) {
-        String result = "";
-        try {
-            Optional.ofNullable(map.get("id")).orElseThrow(() -> new CustomException(EnumHandle.PARAMS_INCORRECT));
-            String id = map.get("id").toString();
-            User user = iUser.queryFace(id);
-            result = SioeyeLog.packageSuccessLog(log, user);
-        } catch (CustomException e) {
-            result = SioeyeLog.packageExceptionLog(log, e);
-        } catch (Exception e) {
-            SioeyeLog.packageErrorLog(log, e.toString());
-        }
-        return result;
-    }
+	@RequestMapping(value = "/query_user", method = RequestMethod.POST)
+	public String queryFace(@RequestBody Map<String, Object> map) {
+		String result = "";
+		try {
+			Optional.ofNullable(map.get("id")).orElseThrow(() -> new CustomException(EnumHandle.PARAMS_INCORRECT));
+			String id = map.get("id").toString();
+			User user = iUser.queryFace(id);
+			result = JSONObject.toJSONString(user);
+		} catch (CustomException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
