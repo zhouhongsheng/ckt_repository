@@ -29,6 +29,8 @@ spring cloud 微服务框架
 
 4：项目使用
 ----------------------------------------------------
-* sidecar 依次启动eureka，config，zuul server ,启动test-sidecar-server,再启动user-server.访问localhost:8000，查看服务启动情况。如全部启动成功可POST方式访问http://localhost:8020/user/query_user，参数{"id":1},查看返回结果
+* sidecar 依次启动eureka，config，zuul server ,启动test-sidecar-server,再启动user-server，成功启动后再node的后台就可以看到health访问的请求，时间如果没有重新设置为30s。访问localhost:8000，查看服务启动情况。如全部启动成功可POST方式访问http://localhost:8020/user/query_user，参数{"id":1},查看返回结果
 * turbine 聚合hystrix项目，进行健康监控。依次启动eureka，config，zuul，再启动test-server和test-producer-server,最后启动turbine-server。浏览器地址输入http://localhost:8030/hystrix 如果成功，可以看到豪猪界面，在监控地址输入localhost:8030/turbine.stream?cluster=TEST监控，成功的话可以看到如下图
 ![Image text](https://github.com/zhouhongsheng/ckt_repository/blob/master/img_folder/turbine.jpg)
+* zipkin 服务链路追踪。依次启动eureka，config，zuul，在启动test-server和test-producer-server，最后启动zipkin-server。浏览器地址输入http://localhost:8040/ 如果成功，可以进入zipkin界面，进行filter后，可以看到如下图
+![Image text](https://github.com/zhouhongsheng/ckt_repository/blob/master/img_folder/zipkin.jpg)
