@@ -21,7 +21,7 @@ public class TestProducerController {
 					@HystrixProperty(name = "maxQueueSize", value = "-1"),
 					@HystrixProperty(name = "queueSizeRejectionThreshold", value = "10") })
 	public String producerIndex() {
-		return "hello world, this test producer ";
+		return "hello world, this test producer server ";
 	}
 
 	public String producerIndexFallback() {

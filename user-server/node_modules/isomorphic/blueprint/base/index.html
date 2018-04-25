@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>isomorphic</title>
+    {{CRITICAL_CSS}}
+  </head>
+  <body>
+    <div id="isomorphic">{{BODY}}</div>
+    <script>window.isomorphize={componentPath:{{COMPONENT_PATH}},data:{{DATA}},nonCriticalCSS:{{NON_CRITICAL_CSS}}};</script>
+    <script src="/isomorphic.js" async></script>
+  </body>
+</html>

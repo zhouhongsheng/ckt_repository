@@ -1,0 +1,77 @@
+<configuration>
+	<!-- always a good activate OnConsoleStatusListener -->
+	<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+	<appender name="logFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>50GB</totalSizeCap>
+			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- <rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+			<MaxFileSize>10MB</MaxFileSize>
+		</rollingPolicy> -->
+		<encoder>
+			<pattern>
+				%t{yyyy-MM-dd HH:mm:ss.SSS} - {
+				"requestUri":"%U",
+				"elapsedTime":"%D",
+				"costs":%D,
+				"status_code":"%s",
+				"userId":"%reqAttribute{userId}",
+				"realIP":"%reqAttribute{realIP}",
+				"requestHeader":[{
+				"appID":"%header{x_sioeye_app_id}",
+				"appKey":"%header{x_sioeye_app_sign_key}",
+				"appProduction":"%header{X_Sioeye_App_Production}",
+				"sessionToken":"%header{x_sioeye_sessiontoken}",
+				"refreshToken":"%header{x_sioeye_refreshtoken}",
+				"connection":"%header{connection}",
+				"contentType":"%header{content-type}",
+				"userAgent":"%header{user-agent}"
+				}],
+				"request":%requestContent,
+                "response":%responseContent
+				}
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%t{yyyy-MM-dd HH:mm:ss.SSS} -{
+				"requestUri":"%U",
+				"elapsedTime":"%D",
+				"costs":%D,
+				"status_code":"%s",
+				"userId":"%reqAttribute{userId}",
+				"realIP":"%reqAttribute{realIP}",
+				"requestHeader":[{
+				"appID":"%header{x_sioeye_app_id}",
+				"appKey":"%header{x_sioeye_app_sign_key}",
+				"appProduction":"%header{X_Sioeye_App_Production}",
+				"sessionToken":"%header{x_sioeye_sessiontoken}",
+				"refreshToken":"%header{x_sioeye_refreshtoken}",
+				"connection":"%header{connection}",
+				"contentType":"%header{content-type}",
+				"userAgent":"%header{user-agent}"
+				}],
+				"request":%requestContent,
+				"response":%responseContent
+				}
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender-ref ref="logFile" />
+	<appender-ref ref="CONSOLE" />
+</configuration>
