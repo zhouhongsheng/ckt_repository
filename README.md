@@ -34,3 +34,4 @@ spring cloud 微服务框架
 ![Image text](https://github.com/zhouhongsheng/ckt_repository/blob/master/img_folder/turbine.jpg)
 * zipkin 服务链路追踪。依次启动eureka，config，zuul，在启动test-server和test-producer-server，最后启动zipkin-server。浏览器地址输入http://localhost:8040/ 如果成功，可以进入zipkin界面，进行filter后，可以看到如下图
 ![Image text](https://github.com/zhouhongsheng/ckt_repository/blob/master/img_folder/zipkin.jpg)
+* 限流处理，我在zuul加入了限流的处理，存储方式为redis，所以你需要本地打开redis。为了方便测试，目前设置的为url，60s内限流3次，也就是说上面的http://localhost:8020/test/index 接口在60s内只能访问三次，超过后，zuul会报错，错误code为429
