@@ -11,3 +11,11 @@ spring cloud 微服务框架
 * user server为node项目，通过test sidecar server 调用</br>
 * test server为访问接口</br>
 * test producer server为服务提供者</br>
+
+2：端口设置
+-------------------------------------------------
+* 80xx为基础服务端口
+* 90xx为微服务
+* 基础服务端口对应 8000=eureka 8010=config 8020=zuul 8030=turbine 8040=zipkin 8050=sidecar
+* 微服务端口对应 9000=test 9010=test producer 9020=node user
+
