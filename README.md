@@ -19,3 +19,13 @@ spring cloud 微服务框架
 * 基础服务端口对应 8000=eureka 8010=config 8020=zuul 8030=turbine 8040=zipkin 8050=sidecar
 * 微服务端口对应 9000=test 9010=test producer 9020=node user
 
+3：项目设置
+----------------------------------------------------
+* eureka 
+* config 我采用的是加载本地配置文件，通过location config注释下的配置进行设置，需要你根据本地信息进行重新设置。你也可以采用加载远程配置，需要将remote git config注释下的配置信息打开，同时配置参数信息。（注意项目的中的配置文件信息，一个服务会加载三个配置文件，第一个是项目自带的bootstrap.properties，第二个是{spring.application.name}对应的名称的.properties文件，前提是项目启动时不加参数--spring.cloud.config.profile=xxx，第三个配置文件为application.properties）
+* zuul 网关的路由设置采用的serviceId方式。test server ratelimit注释下的为网关限流设置,test server hystrix注释下为服务熔断设置，upload file注释下为上传大文件设置，zipkin info注释下为服务链路追踪的设置
+* turbine 服务监控聚合服务turbine.appConfig注释下配置
+* zipkin
+
+4：项目使用
+----------------------------------------------------
